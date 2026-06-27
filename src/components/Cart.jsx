@@ -23,7 +23,7 @@ function Cart({ product, className }) {
       ${className}
       `}
     >
-      <div className="w-full h-full @sm:h-full @md:w-2/5 relative aspect-square">
+      <div className="w-full h-1/2 @sm:h-full @md:w-2/5 relative aspect-square">
         {product?.images[1] ? (
           <img
             loading="eager"

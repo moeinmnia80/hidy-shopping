@@ -13,7 +13,7 @@ function CheckoutPage() {
       <BreadCrumbs path="Products" title="Cart" />
       <section
         className="flex flex-col-reverse md:flex-row
-        mt-10 gap-2"
+        mt-10 gap-2 min-h-70 animate-fade-in"
       >
         <div className="w-full md:w-1/4 h-fit bg-muted p-2 rounded-lg">
           <div

@@ -11,7 +11,13 @@ function Header() {
 
   return (
     <>
-      <header className="flex items-center w-full bg-overlay backdrop-blur-2xl border-b border-secondary sticky top-0 z-10">
+      <header
+        className="flex items-center w-full 
+        dark:bg-overlay-light
+        backdrop-blur-2xl text-secondary
+        border-b border-secondary 
+        sticky top-0 z-10"
+      >
         <div className="mx-auto w-full md:max-w-3xl lg:max-w-5xl px-4 sm:px-6 lg:px-8">
           <nav className="flex items-center justify-between h-20">
             <div className="flex items-center">

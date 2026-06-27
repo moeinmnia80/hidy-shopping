@@ -35,7 +35,11 @@ function Products() {
       >
         {!isLoading && filteredProducts.length ? (
           filteredProducts.map((item) => (
-            <Cart key={item.id} product={item} className="flex-col" />
+            <Cart
+              key={item.id}
+              product={item}
+              className={`flex-col animate-fade-in`}
+            />
           ))
         ) : (
           <div

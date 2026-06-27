@@ -16,7 +16,7 @@ function ProductsDetailPage() {
       <BreadCrumbs path="product" title={product?.title} />
       <div
         className="flex items-center justify-center 
-        w-full mt-10"
+        w-full mt-10 animate-fade-in"
       >
         <div className="w-2/5 h-full">
           {product?.images[1] ? (

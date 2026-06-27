@@ -6,9 +6,10 @@ function Layout(props) {
     <>
       <Header />
       <main
-        className="mx-auto bg-primary 
-      w-full md:max-w-3xl lg:max-w-5xl 
-      px-6 lg:px-8"
+        className="mx-auto dark:bg-primary 
+        w-full md:max-w-3xl lg:max-w-5xl 
+        px-6 lg:px-8"
+        s
       >
         {props.children}
       </main>
