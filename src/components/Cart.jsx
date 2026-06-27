@@ -19,10 +19,11 @@ function Cart({ product, className }) {
       bg-muted overflow-hidden  
       border border-muted rounded-lg
       transition-all duration-300 shrink-0
+      @container
       ${className}
       `}
     >
-      <div className="w-1/2 @md:w-full relative aspect-square">
+      <div className="w-full h-1/2 @sm:h-full @md:w-2/5 relative aspect-square">
         {product?.images[1] ? (
           <img
             loading="eager"
@@ -49,7 +50,7 @@ function Cart({ product, className }) {
       </div>
       <div
         className="flex flex-col justify-between h-full p-2
-        w-1/2 @md:w-full"
+        w-full @md:w-3/5"
       >
         <h3 className="text-md @md:text-sm font-light @md:line-clamp-1 @md:mt-2">
           {product.title}

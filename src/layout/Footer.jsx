@@ -1,7 +1,7 @@
 function Footer() {
   return (
     <footer className="w-full bg-overlay backdrop-blur-2xl mt-15 border-t border-secondary">
-      <div className="mx-auto w-full md:max-w-2xl lg:max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full md:max-w-3xl lg:max-w-5xl px-4 sm:px-6 lg:px-8">
         <section className="grid grid-cols-4 grid-rows-2 pt-10 pb-10">
           <div className="row-span-2">
             <h3 className="font-bold">Service</h3>

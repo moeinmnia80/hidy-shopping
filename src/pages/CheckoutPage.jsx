@@ -12,10 +12,10 @@ function CheckoutPage() {
     <>
       <BreadCrumbs path="Products" title="Cart" />
       <section
-        className="@container flex 
+        className="flex flex-col-reverse md:flex-row
         mt-10 gap-2"
       >
-        <div className="w-1/4 h-fit bg-muted p-2 rounded-lg">
+        <div className="w-full md:w-1/4 h-fit bg-muted p-2 rounded-lg">
           <div
             className="flex items-center justify-between 
             text-sm font-light"
@@ -41,7 +41,7 @@ function CheckoutPage() {
             disabled={cartItems ? false : true}
           />
         </div>
-        <div className="flex flex-col gap-2 w-3/4">
+        <div className="flex flex-col gap-2 w-full md:w-3/4">
           {cartItems ? (
             products.map((item) => (
               <Cart

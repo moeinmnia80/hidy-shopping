@@ -27,11 +27,11 @@ function Products() {
   if (isError) return <Error />;
 
   return (
-    <div className="flex flex-col items-center md:w-3/4 mt-10">
+    <div className="flex flex-col items-center w-full md:w-3/4 mt-10">
       <div
         className="grid w-full
         grid-cols-1 md:grid-cols-2 lg:grid-cols-3 
-        auto-rows-auto gap-2 content-center @container"
+        auto-rows-auto gap-2 content-center"
       >
         {!isLoading && filteredProducts.length ? (
           filteredProducts.map((item) => (

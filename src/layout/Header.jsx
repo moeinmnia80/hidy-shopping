@@ -12,7 +12,7 @@ function Header() {
   return (
     <>
       <header className="flex items-center w-full bg-overlay backdrop-blur-2xl border-b border-secondary sticky top-0 z-10">
-        <div className="mx-auto w-full md:max-w-2xl lg:max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto w-full md:max-w-3xl lg:max-w-5xl px-4 sm:px-6 lg:px-8">
           <nav className="flex items-center justify-between h-20">
             <div className="flex items-center">
               <Link
@@ -51,14 +51,14 @@ function Header() {
                 <div
                   className="hidden group-hover:flex flex-col gap-2 bg-primary
                   w-100 min-h-50 h-fit max-h-140 overflow-y-scroll p-2 absolute top-full right-0
-                  border border-secondary rounded-xl @container"
+                  border border-secondary rounded-xl"
                 >
                   {cartItems ? (
                     cartProducts.map((item) => (
                       <Cart
                         key={item.product.id}
                         product={item.product}
-                        className="@md:flex-col @md:shrink"
+                        className="shrink"
                       />
                     ))
                   ) : (
