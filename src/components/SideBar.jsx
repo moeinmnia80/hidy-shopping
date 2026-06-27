@@ -1,16 +1,21 @@
 import { memo } from "react";
 import { useUrlSync } from "../hooks/useUrlSync";
 import { useGetCategoriesQuery } from "../api/catalog";
-import { setCategory } from "../feature/productsSlice";
+import { setCategory, setFilters } from "../feature/productsSlice";
+import { useDispatch } from "react-redux";
 
 function SideBar() {
+  const dispatch = useDispatch();
   const { data: categories, isLoading } = useGetCategoriesQuery({});
-  const [categoryParam, setCategoryParam] = useUrlSync(
+  const [data, setData] = useUrlSync(
     "category",
     (state) => state.productFilters,
     setCategory,
   );
-
+  const setCategoryHandler = (category) => {
+    dispatch(setFilters({ search: data.search, category: "" }));
+    setData(category);
+  };
   return (
     <ul
       className={`hidden
@@ -25,10 +30,10 @@ function SideBar() {
           <li
             key={category.id}
             className={`
-            ${categoryParam.category === category.name && `border-l-2 border-secondary`}
+            ${data.category === category.name && `border-l-2 border-secondary`}
             text-sm font-light cursor-pointer pl-3
             `}
-            onClick={() => setCategoryParam(category.name)}
+            onClick={() => setCategoryHandler(category.name)}
           >
             {category.name}
           </li>

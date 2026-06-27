@@ -1,10 +1,11 @@
-function HomeSVG(props) {
+function HomeSVG({ className, ...rest }) {
   return (
     <svg
-      className={props.className}
+      className={className}
       viewBox="0 0 16 16"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      {...rest}
     >
       <path
         d="M8.66659 11H7.33325C6.77992 11 6.33325 11.4467 6.33325 12V14.3333H9.66659V12C9.66659 11.4467 9.21992 11 8.66659 11Z"

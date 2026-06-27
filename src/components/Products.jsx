@@ -5,10 +5,13 @@ import Loading from "../components/Loading";
 import { setLimit } from "../feature/productsSlice";
 import { useGetProductsQuery } from "../api/catalog";
 import { useDispatch, useSelector } from "react-redux";
+import { setProductsFilter } from "../utils/utils";
 
 function Products() {
   const dispatch = useDispatch();
-  const { limit, offset } = useSelector((state) => state.productFilters);
+  const { search, category, limit, offset } = useSelector(
+    (state) => state.productFilters,
+  );
   const {
     data: products,
     isLoading,
@@ -16,27 +19,40 @@ function Products() {
     isFetching,
   } = useGetProductsQuery({ limit, offset });
 
+  const filteredProducts = products
+    ? setProductsFilter(products, search, category)
+    : null;
+
   if (isLoading) return <Loading />;
   if (isError) return <Error />;
 
   return (
-    <div
-      className="flex flex-col items-center
-          md:w-3/4 mt-10"
-    >
+    <div className="flex flex-col items-center md:w-3/4 mt-10">
       <div
-        className="grid 
-            grid-cols-1 md:grid-cols-2 lg:grid-cols-3 
-            auto-rows-auto gap-5 content-center
-            "
+        className="grid w-full
+        grid-cols-1 md:grid-cols-2 lg:grid-cols-3 
+        auto-rows-auto gap-2 content-center @container"
       >
-        {!isLoading &&
-          products.map((item) => <Cart key={item.id} product={item} />)}
+        {!isLoading && filteredProducts.length ? (
+          filteredProducts.map((item) => <Cart key={item.id} product={item} />)
+        ) : (
+          <div
+            className="w-full col-span-3 
+            grid place-items-center h-85
+            border border-secondary rounded-md"
+          >
+            No products found.
+          </div>
+        )}
       </div>
       <Button
+        className={`${filteredProducts ? "flex" : "hidden"}
+        w-36 h-12 mt-10 justify-center
+        border border-secondary rounded-md
+        transition duration-200 delay-75`}
         isLoading={isFetching}
         text="Load More"
-        clickHandler={(e) => {
+        onClick={(e) => {
           e.preventDefault();
           dispatch(setLimit());
         }}

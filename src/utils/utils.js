@@ -1,32 +1,34 @@
-export const getInitialQuery = (searchParams) => {
-  const queryHistory = { search: "", category: "" };
-  const searchHistory = searchParams.get("search");
-  const categoryHistory = searchParams.get("category");
-  if (searchHistory) queryHistory.search = searchHistory;
-  if (categoryHistory) queryHistory.category = categoryHistory;
-  return queryHistory;
-};
-
-export const themeValidation = () => {
-  if (
-    localStorage.theme === "dark" ||
-    (!("theme" in localStorage) &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches)
-  ) {
-    document.documentElement.classList.add("dark");
-    localStorage.setItem("theme", "dark");
-  } else {
-    document.documentElement.classList.remove("dark");
-    localStorage.setItem("theme", "light");
-  }
-};
-
-export const filterProducts = (cache, search) => {
-  return cache.filter((product) => {
-    const searchWords = search.trim().toLowerCase().split(/\s+/);
-    const productText = product.title.toLowerCase();
+export const setProductsFilter = (products, search, category) => {
+  let filteredProducts = products.filter((product) => {
+    const searchText = search.trim().toLowerCase().split(" ");
+    const productTitle = product.title.trim().toLowerCase();
     return !search
-      ? cache
-      : searchWords.some((word) => productText.includes(word));
+      ? product
+      : searchText.some((word) => productTitle.includes(word));
   });
+  filteredProducts = filteredProducts.filter((product) => {
+    const categoryText = category.toLowerCase();
+    const productCategory = product.category.name.toLowerCase();
+    return !category ? product : categoryText === productCategory;
+  });
+  return filteredProducts;
+};
+
+// Cart Store
+export const calculateCart = (products) => {
+  if (!products.length) {
+    return { cartItems: 0, totalPrice: 0 };
+  }
+  console.log(products, products.length);
+  products[0].product.price;
+  const cartItems = products.reduce((acc, cur) => acc + cur.qty, 0);
+  const totalPrice = products.reduce(
+    (acc, cur) => acc + cur.qty * cur.product.price,
+    0,
+  );
+
+  return {
+    cartItems,
+    totalPrice: Number(totalPrice.toFixed(2)),
+  };
 };

@@ -1,4 +1,4 @@
-function SearchSVG({ className, ...rest }) {
+function PlusSVG({ className, ...rest }) {
   return (
     <svg
       className={className}
@@ -7,9 +7,14 @@ function SearchSVG({ className, ...rest }) {
       xmlns="http://www.w3.org/2000/svg"
       {...rest}
     >
-      <circle cx="6.6001" cy="6.6001" r="6" strokeWidth="1.2" />
       <path
-        d="M11 11L15.2426 15.2426"
+        d="M1 8H15"
+        strokeWidth="1.2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M8 15L8 1"
         strokeWidth="1.2"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -18,4 +23,4 @@ function SearchSVG({ className, ...rest }) {
   );
 }
 
-export default SearchSVG;
+export default PlusSVG;

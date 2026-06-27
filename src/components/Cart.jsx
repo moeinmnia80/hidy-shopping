@@ -1,16 +1,28 @@
+import Button from "./Button";
 import { Link } from "react-router";
+import BuySVG from "../assets/BuySVG";
+import PlusSVG from "../assets/PlusSVG";
+import MinusSVG from "../assets/MinusSVG";
+import { useCart } from "../store/cartStore";
+import { useShallow } from "zustand/shallow";
+
 function Cart({ product }) {
+  const items = useCart((state) => state.products);
+  const addToCart = useCart(useShallow((state) => state.addToCart));
+  const removeFromCart = useCart(useShallow((state) => state.removeFromCart));
+  const cartItem = items.find((item) => item.product.id === product.id);
+
   return (
     <Link
       to={`/products/${product.id}`}
-      className="flex flex-col
+      className="flex @md:flex-col 
       bg-muted overflow-hidden  
       border border-muted rounded-lg
-      transition-all duration-300
-      hover:scale-105"
+      transition-all duration-300 shrink-0 @md:shrink
+      "
     >
-      <div className="w-full relative aspect-square">
-        {product.images[1] ? (
+      <div className="w-1/2 @md:w-full relative aspect-square">
+        {product?.images[1] ? (
           <img
             loading="eager"
             fetchPriority="low"
@@ -34,16 +46,51 @@ function Cart({ product }) {
           50%
         </span>
       </div>
-      <div className="flex flex-col justify-between h-full p-2">
-        <h3 className="text-sm font-light line-clamp-1 mt-2">
+      <div
+        className="flex flex-col justify-between h-full p-2
+        w-1/2 @md:w-full"
+      >
+        <h3 className="text-md @md:text-sm font-light @md:line-clamp-1 @md:mt-2">
           {product.title}
         </h3>
-        <p className="text-sm font-extralight line-clamp-2 mt-5">
+        <p className="text-sm font-extralight line-clamp-2 mt-2 @md:mt-5">
           {product.description}
         </p>
-        <div className="flex items-center justify-between mt-5">
+        <div className="flex items-center justify-between mt-2 @md:mt-5">
           <div>Price: ${product.price}</div>
-          <button></button>
+          {cartItem ? (
+            <Button
+              className={`flex items-center gap-2
+              w-20 @md:w-24 h-8 @md:h-10 justify-between
+              border border-secondary rounded-md`}
+              text=""
+              onClick={(event) => event.preventDefault()}
+            >
+              <MinusSVG
+                className="h-full p-2 @md:p-3 stroke-secondary"
+                onClick={() => removeFromCart(product)}
+              />
+              {cartItem.qty}
+              <PlusSVG
+                className="h-full p-2 @md:p-3  stroke-secondary"
+                onClick={() => addToCart(product)}
+              />
+            </Button>
+          ) : (
+            <Button
+              className={`flex items-center gap-2
+              w-24 h-10 pl-3 pr-3 justify-center
+              border border-secondary rounded-md`}
+              text="Add"
+              onClick={(event) => {
+                event.stopPropagation();
+                event.preventDefault();
+                addToCart(product);
+              }}
+            >
+              <BuySVG className="size-5 stroke-secondary" />
+            </Button>
+          )}
         </div>
       </div>
     </Link>

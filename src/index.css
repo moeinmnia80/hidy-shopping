@@ -7,6 +7,9 @@
   --color-muted: rgb(210, 195, 161, 20%);
   --color-overlay: rgba(0, 0, 0, 15%);
 }
+::-webkit-scrollbar {
+  width: 0;
+}
 ::selection {
   background-color: var(--color-secondary);
   color: var(--color-primary);

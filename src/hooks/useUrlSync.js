@@ -10,18 +10,19 @@ export function useUrlSync(paramName, selectorFn, actionCreator) {
 
   useEffect(() => {
     const urlValue = searchParams.get(paramName) || "";
-    if (urlValue !== value) {
+    if (urlValue !== value[paramName]) {
       dispatch(actionCreator(urlValue));
     }
   }, []);
 
   const updateValue = (newValue) => {
-    if (value[paramName] === newValue) return;
-
-    dispatch(actionCreator(newValue));
-
     const params = new URLSearchParams(searchParams);
-
+    if (value[paramName] === newValue) {
+      paramName === "category" &&
+        (params.delete(paramName), setSearchParams(params));
+      return;
+    }
+    dispatch(actionCreator(newValue));
     newValue ? params.set(paramName, newValue) : params.delete(paramName);
     setSearchParams(params);
   };

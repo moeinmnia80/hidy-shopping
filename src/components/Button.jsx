@@ -1,14 +1,13 @@
-function Button({ isLoading, text, clickHandler }) {
+function Button({ isLoading = false, text = "button", ...props }) {
   return (
     <button
-      className={`flex items-center justify-center
-        w-36 h-12
-        text-sm font-normal
-        border border-secondary rounded-md
-        cursor-pointer mt-10
-        transition duration-200 delay-75
-        `}
-      onClick={clickHandler}
+      className={`
+      items-center
+      text-sm font-normal
+      cursor-pointer 
+      ${props.className}
+      `}
+      onClick={props.onClick}
     >
       {isLoading ? (
         <span
@@ -24,6 +23,7 @@ function Button({ isLoading, text, clickHandler }) {
       ) : (
         text
       )}
+      {props.children}
     </button>
   );
 }
