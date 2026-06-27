@@ -1,13 +1,13 @@
-function Button({ isLoading = false, text = "button", ...props }) {
+function Button({ isLoading = false, text = "button", className, ...props }) {
   return (
     <button
       className={`
       items-center
       text-sm font-normal
       cursor-pointer 
-      ${props.className}
+      ${className}
       `}
-      onClick={props.onClick}
+      {...props}
     >
       {isLoading ? (
         <span

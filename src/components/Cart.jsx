@@ -6,7 +6,7 @@ import MinusSVG from "../assets/MinusSVG";
 import { useCart } from "../store/cartStore";
 import { useShallow } from "zustand/shallow";
 
-function Cart({ product }) {
+function Cart({ product, className }) {
   const items = useCart((state) => state.products);
   const addToCart = useCart(useShallow((state) => state.addToCart));
   const removeFromCart = useCart(useShallow((state) => state.removeFromCart));
@@ -15,11 +15,12 @@ function Cart({ product }) {
   return (
     <Link
       to={`/products/${product.id}`}
-      className="flex @md:flex-col 
+      className={`flex 
       bg-muted overflow-hidden  
       border border-muted rounded-lg
-      transition-all duration-300 shrink-0 @md:shrink
-      "
+      transition-all duration-300 shrink-0
+      ${className}
+      `}
     >
       <div className="w-1/2 @md:w-full relative aspect-square">
         {product?.images[1] ? (

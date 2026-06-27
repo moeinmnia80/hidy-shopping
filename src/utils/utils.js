@@ -19,7 +19,6 @@ export const calculateCart = (products) => {
   if (!products.length) {
     return { cartItems: 0, totalPrice: 0 };
   }
-  console.log(products, products.length);
   products[0].product.price;
   const cartItems = products.reduce((acc, cur) => acc + cur.qty, 0);
   const totalPrice = products.reduce(

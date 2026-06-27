@@ -34,7 +34,9 @@ function Products() {
         auto-rows-auto gap-2 content-center @container"
       >
         {!isLoading && filteredProducts.length ? (
-          filteredProducts.map((item) => <Cart key={item.id} product={item} />)
+          filteredProducts.map((item) => (
+            <Cart key={item.id} product={item} className="flex-col" />
+          ))
         ) : (
           <div
             className="w-full col-span-3 

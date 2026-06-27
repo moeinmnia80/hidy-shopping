@@ -55,7 +55,11 @@ function Header() {
                 >
                   {cartItems ? (
                     cartProducts.map((item) => (
-                      <Cart key={item.product.id} product={item.product} />
+                      <Cart
+                        key={item.product.id}
+                        product={item.product}
+                        className="@md:flex-col @md:shrink"
+                      />
                     ))
                   ) : (
                     <div

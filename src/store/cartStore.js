@@ -7,7 +7,6 @@ export const useCart = create(
     (set, get) => ({
       products: [],
       cartItems: 0,
-      checkout: false,
       totalPrice: 0,
 
       addToCart: (product) => {
