@@ -70,13 +70,6 @@ function Loading({
         ${className}`}
         {...props}
       >
-        <title>Animated loading: infinity symbol morphing into a flower</title>
-        <desc>
-          A stroke-drawn infinity symbol that smoothly morphs into a six-petal
-          flower, like ink on paper
-        </desc>
-
-        {/* Infinity symbol */}
         <path
           className="loading-infinity"
           stroke={stroke}
