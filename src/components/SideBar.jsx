@@ -1,8 +1,8 @@
 import { memo } from "react";
+import { useDispatch } from "react-redux";
 import { useUrlSync } from "../hooks/useUrlSync";
 import { useGetCategoriesQuery } from "../api/catalog";
 import { setCategory, setFilters } from "../feature/productsSlice";
-import { useDispatch } from "react-redux";
 
 function SideBar() {
   const dispatch = useDispatch();
